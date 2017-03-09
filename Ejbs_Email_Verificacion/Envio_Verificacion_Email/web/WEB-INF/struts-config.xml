@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+    <form-beans>
+        <form-bean name="FormInsertActionForm" type="ejbs.form.FormInsertActionForm"/>
+    </form-beans>
+    
+    <global-exceptions> </global-exceptions>
+
+    <global-forwards>
+        <forward name="welcome"  path="/Welcome.do"/>
+        <forward name="failure"  path="/jsps/failure.jsp"/>
+    </global-forwards>
+    
+    
+    <action-mappings>
+        
+        <action path="/formInsert" forward="/jsps/formInsert.jsp"/>
+        <action path="/insert"
+                type="ejbs.action.InsertAction"
+                name="FormInsertActionForm"
+                scope="request"
+                attribute="old"
+                input="/formInsert.do"
+                validate="true">
+            <forward name="success" path="/jsps/msgInsert.jsp"/> 
+        </action>
+        
+        <action path="/activate" type="ejbs.action.ActivateAction">
+            <forward name="success"  path="/jsps/activate.jsp"/> 
+        </action>
+        
+        <action path="/listUsuarios2" type="ejbs.action.ListUsers2Action">
+            <forward name="success"  path="/jsps/listUsuarios2.jsp"/> 
+        </action>
+        
+        <action path="/listUsuarios" type="ejbs.action.ListUsersAction">
+            <forward name="success"  path="/jsps/listUsuarios.jsp"/> 
+        </action>
+                  
+    </action-mappings>
+    
+    
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+    <message-resources parameter="com/myapp/struts/ApplicationResource"/> 
+      
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+        <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />      
+        <set-property property="moduleAware" value="true" />
+    </plug-in>
+    
+    <!-- ========================= Validator plugin =================================-->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property
+            property="pathnames"
+            value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+    </plug-in>
+  
+</struts-config>
