@@ -26,8 +26,8 @@ import javax.mail.internet.MimeMessage;
                                     @ActivationConfigProperty(propertyName = "connectionFactoryLookup", propertyValue = "jms/xaConnectionFactory")
                                   })
 public class EmailMessageBean implements MessageListener {
-    //@Resource(lookup = "mail/rberjon")
-    @Resource(lookup = "mail/babsy.mayte")
+    
+    @Resource(lookup = "mail/#####")
     private Session mailSession;
         
     @Override
